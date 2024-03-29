@@ -19,11 +19,11 @@ public class Patient {
     private Date dateOfBirth;
     @ManyToOne
     @JoinColumn(name = "admitted_by", referencedColumnName = "employee_id")
-    private int addmitedBy;
+    private int admittedBy;
 
     public Patient(String name, Date dateOfBirth, int addmitedBy) {
         setName(name);
         setDateOfBirth(dateOfBirth);
-        setAddmitedBy(addmitedBy);
+        setAdmittedBy(addmitedBy);
     }
 }

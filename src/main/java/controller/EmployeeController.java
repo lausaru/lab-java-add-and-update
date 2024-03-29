@@ -3,6 +3,7 @@ package controller;
 import model.Employee;
 import model.EmployeeStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import service.EmployeeService;
 
@@ -35,7 +36,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/doctors")
-    public Employee addNewEmployee(@RequestBody Employee employee) {
-        return employeeService.addNewEmployee(employee);
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void addNewEmployee(@RequestBody Employee employee) {
+        employeeService.addNewEmployee(employee);
+    }
+
+    @PatchMapping("/{id}/status")
+    public void updateDoctorStatus(@PathVariable int id, @RequestBody EmployeeStatus status) {
+        employeeService.updateStatus(id, status);
+    }
+
+    @PatchMapping("/{id}/department")
+    public void updateDoctorDepartment(@PathVariable int id, @RequestBody String department) {
+        employeeService.updateDepartment(id, department);
     }
 }

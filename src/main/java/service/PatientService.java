@@ -40,7 +40,18 @@ public class PatientService {
         return patientRepository.findAllByDoctorStatusIsOff();
     }
 
-    public Patient addNewPatient(Patient patient) {
-        return patientRepository.save(patient);
+    public void addNewPatient(Patient patient) {
+        patientRepository.save(patient);
+    }
+
+    public void updateInformation (int patientId, Patient patientUpdated) {
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        if (optionalPatient.isPresent()) {
+            Patient patientOK = optionalPatient.get();
+            patientOK.setName(patientUpdated.getName());
+            patientOK.setDateOfBirth(patientUpdated.getDateOfBirth());
+            patientOK.setAdmittedBy(patientUpdated.getAdmittedBy());
+            patientRepository.save(patientUpdated);
+        }
     }
 }

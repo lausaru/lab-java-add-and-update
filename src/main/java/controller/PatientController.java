@@ -4,6 +4,7 @@ import model.Employee;
 import model.EmployeeStatus;
 import model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import service.PatientService;
 
@@ -47,7 +48,13 @@ public class PatientController {
     }
 
     @PostMapping("/patients")
-    public Patient addNewPatient(@RequestBody Patient patient) {
-        return patientService.addNewPatient(patient);
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void addNewPatient(@RequestBody Patient patient) {
+        patientService.addNewPatient(patient);
+    }
+
+    @PutMapping("/update/{id}")
+    public void updatePatient(@PathVariable int id, @RequestBody Patient patientUpdated) {
+        patientService.updateInformation(id, patientUpdated);
     }
 }
