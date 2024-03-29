@@ -1,5 +1,6 @@
 package service;
 
+import model.Employee;
 import model.EmployeeStatus;
 import model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,9 @@ public class PatientService {
 
     public List<Patient> findAllByDoctorStatusIsOff() {
         return patientRepository.findAllByDoctorStatusIsOff();
+    }
+
+    public Patient addNewPatient(Patient patient) {
+        return patientRepository.save(patient);
     }
 }

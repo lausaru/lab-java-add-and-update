@@ -30,4 +30,8 @@ public class EmployeeService {
         return employeeRepository.findAllByStatus(status);
     }
 
+    public Employee addNewEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
 }

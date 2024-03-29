@@ -1,5 +1,6 @@
 package controller;
 
+import model.Employee;
 import model.EmployeeStatus;
 import model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class PatientController {
     @GetMapping("/patients/status_off")
     public List<Patient> findAllByDoctorStatusIsOff() {
         return patientService.findAllByDoctorStatusIsOff();
+    }
+
+    @PostMapping("/patients")
+    public Patient addNewPatient(@RequestBody Patient patient) {
+        return patientService.addNewPatient(patient);
     }
 }

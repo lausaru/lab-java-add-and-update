@@ -33,4 +33,9 @@ public class EmployeeController {
     public List<Employee> findByStatus(@PathVariable EmployeeStatus status) {
         return employeeService.findAllByStatus(status);
     }
+
+    @PostMapping("/doctors")
+    public Employee addNewEmployee(@RequestBody Employee employee) {
+        return employeeService.addNewEmployee(employee);
+    }
 }
